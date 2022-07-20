@@ -1,0 +1,73 @@
+import AV from '../AnswerValidator/index';
+
+const questionType = Object.freeze({
+  machine_name: 'text_manual_short_v1'
+});
+
+const question = {
+  required: true,
+  value: {
+    label: 'Cras vitae tortor sit?',
+    variableName: 'cras_vitae_tortor_sit',
+    prepopulate: '',
+    replacementFormat: 'inline'
+  }
+};
+
+const answer = {
+  response: 'Tortor'
+};
+
+test('Non-empty string is always VALID', () => {
+  let res;
+  let questionMod = { ...question };
+  questionMod.required = false;
+
+  // On required question.
+  res = AV.text_manual_long_v1(question, answer);
+  expect(res).toBe(true);
+
+  // On optional question.
+  res = AV.text_manual_long_v1(questionMod, answer);
+  expect(res).toBe(true);
+});
+
+test('Empty response VALID only if question is optional', () => {
+  let res;
+  let questionMod = { ...question };
+  questionMod.required = false;
+  let answerModNull = { ...answer };
+  let answerModEmptyString = { ...answer };
+  let answerModUndefined = { ...answer };
+  answerModNull.response = null;
+  answerModEmptyString.response = '';
+  delete answerModUndefined.response;
+
+  // --- REQUIRED QUESTION TESTS
+
+  // Null on required question.
+  res = AV.text_manual_long_v1(question, answerModNull);
+  expect(res).toBe(false);
+
+  // Empty string on required question.
+  res = AV.text_manual_long_v1(question, answerModEmptyString);
+  expect(res).toBe(false);
+
+  // Undefined on required question.
+  res = AV.text_manual_long_v1(question, answerModUndefined);
+  expect(res).toBe(false);
+
+  // --- OPTIONAL QUESTION TESTS
+
+  // Null on optional question.
+  res = AV.text_manual_long_v1(questionMod, answerModNull);
+  expect(res).toBe(true);
+
+  // Empty string on optional question.
+  res = AV.text_manual_long_v1(questionMod, answerModEmptyString);
+  expect(res).toBe(true);
+
+  // Undefined on optional question.
+  res = AV.text_manual_long_v1(questionMod, answerModUndefined);
+  expect(res).toBe(true);
+});

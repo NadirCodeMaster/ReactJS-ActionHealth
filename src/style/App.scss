@@ -1,0 +1,426 @@
+@import "vars";
+
+@import-normalize;
+
+html,
+body,
+#root {
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 100vh;
+  // Vertical scrolling is handled by child elements.
+  // (to improve display on Windows)
+  @media screen and (min-width: $bp-md) {
+    overflow-y: hidden;
+  }
+}
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // --
+  // This is assumed present by MUI and our own code
+  // to facilitate using rems. (62.5% of 16px = 10px)
+  font-size: 62.5%;
+  // --
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $color-off-white;
+  color: $txt-color-default;
+  font-family: $txt-font-family-default;
+  font-size: $txt-font-size-default;
+  font-weight: $txt-font-weight-default-normal;
+  margin: 0;
+
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-default-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-default-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-default-bp-lg;
+  }
+}
+
+input[type],
+select,
+textarea {
+  font-family: $txt-font-family-inputs;
+  font-size: $txt-font-size-inputs;
+  font-weight: $txt-font-weight-inputs;
+  letter-spacing: $txt-letter-spacing-inputs;
+  line-height: $txt-line-height-inputs;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-inputs-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-inputs-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-inputs-bp-lg;
+  }
+}
+
+.app {
+  min-height: 100vh;
+  min-width: $site-min-width;
+}
+.app-body {
+  position: relative;
+  min-height: 100vh;
+  min-width: $site-min-width;
+  z-index: 5;
+}
+
+h1 {
+  color: $txt-color-h1;
+  font-size: $txt-font-size-h1;
+  font-variant: $txt-font-variant-h1;
+  font-weight: $txt-font-weight-h1;
+  letter-spacing: $txt-letter-spacing-h1;
+  line-height: $txt-line-height-h1;
+  margin: 0 0 $txt-margin-bottom-h1;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-h1-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-h1-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-h1-bp-lg;
+  }
+}
+h2 {
+  color: $txt-color-h2;
+  font-size: $txt-font-size-h2;
+  font-variant: $txt-font-variant-h2;
+  font-weight: $txt-font-weight-h2;
+  letter-spacing: $txt-letter-spacing-h2;
+  line-height: $txt-line-height-h2;
+  margin: 0 0 $txt-margin-bottom-h2;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-h2-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-h2-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-h2-bp-lg;
+  }
+}
+h3 {
+  color: $txt-color-h3;
+  font-size: $txt-font-size-h3;
+  font-variant: $txt-font-variant-h3;
+  font-weight: $txt-font-weight-h3;
+  letter-spacing: $txt-letter-spacing-h3;
+  line-height: $txt-line-height-h3;
+  margin: 0 0 $txt-margin-bottom-h3;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-h3-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-h3-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-h3-bp-lg;
+  }
+}
+h4 {
+  color: $txt-color-h4;
+  font-size: $txt-font-size-h4;
+  font-weight: $txt-font-weight-h4;
+  font-variant: $txt-font-variant-h4;
+  letter-spacing: $txt-letter-spacing-h4;
+  line-height: $txt-line-height-h4;
+  margin: 0 0 $txt-margin-bottom-h4;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-h4-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-h4-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-h4-bp-lg;
+  }
+}
+h5 {
+  color: $txt-color-h5;
+  font-size: $txt-font-size-h5;
+  font-variant: $txt-font-variant-h5;
+  font-weight: $txt-font-weight-h5;
+  letter-spacing: $txt-letter-spacing-h5;
+  line-height: $txt-line-height-h5;
+  margin: 0 0 $txt-margin-bottom-h5;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-h5-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-h5-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-h5-bp-lg;
+  }
+}
+h6 {
+  color: $txt-color-h6;
+  font-size: $txt-font-size-h6;
+  font-variant: $txt-font-variant-h6;
+  font-weight: $txt-font-weight-h6;
+  letter-spacing: $txt-letter-spacing-h6;
+  line-height: $txt-line-height-h6;
+  margin: 0 0 $txt-margin-bottom-h6;
+  text-transform: uppercase;
+  @media screen and (min-width: $bp-sm) {
+    font-size: $txt-font-size-h6-bp-sm;
+  }
+  @media screen and (min-width: $bp-md) {
+    font-size: $txt-font-size-h6-bp-md;
+  }
+  @media screen and (min-width: $bp-lg) {
+    font-size: $txt-font-size-h6-bp-lg;
+  }
+}
+
+p {
+  margin-top: 0;
+}
+p:last-child,
+ol:last-child,
+ul:last-child {
+  margin-bottom: 0;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  padding-left: #{$spacing-unit-unitless-value * 2.5}#{$spacing-unit-unit};
+  li {
+    line-height: 1.25;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    ol,
+    ul {
+      margin-bottom: 0;
+    }
+  }
+}
+
+dt {
+  font-family: $txt-font-family-default;
+  font-weight: $txt-font-weight-default-bold;
+  margin-bottom: 0.5em;
+}
+dd {
+  margin-bottom: 0.5em;
+  margin-left: #{$spacing-unit-unitless-value * 2}#{$spacing-unit-unit};
+}
+
+blockquote {
+  border-left: solid 4px #eaeaea;
+  margin-left: 0;
+  padding-left: #{$spacing-unit-unitless-value}#{$spacing-unit-unit};
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+strong,
+b {
+  font-weight: $txt-font-weight-default-semibold;
+}
+
+// Normal link styles
+//
+// Note: We define <a> with no pseudo classes to avoid conflicts with
+// MUI styles for Button, which end up being overridden if the router
+// Link component is used within them. The :link, :hover, etc pseudo
+// classes end up overridding the less-specific style defs.
+a {
+  color: $txt-color-link;
+  text-decoration: none;
+}
+
+// "Muted" link styles
+a.muted_link,
+a.muted_link:link,
+a.muted_link:visited {
+  color: $txt-color-muted-link;
+}
+a.muted_link:hover {
+  color: $txt-color-muted-link-hover;
+}
+a.muted_link:active,
+a.muted_link:focus {
+  color: $txt-color-muted-link-hover;
+}
+
+// Screenreader-only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// Force some styling for IE
+.ie_11 label.questionDetailOption,
+.ie_lte_10 label.questionDetailOption {
+  font-size: 0.875em !important;
+  line-height: 1.2;
+  margin-bottom: 1.5em !important;
+  width: 280px !important;
+}
+
+// Override HgAlert styles for IE since it
+// doesn't correctly handle flex.
+.ie_11 .hgalert-wrapper,
+.ie_10 .hgalert-wrapper {
+  .hgalert-text,
+  .hgalert-action-wrapper {
+    display: inline-block;
+  }
+  .hgalert-icon-wrapper {
+    display: none;
+  }
+}
+
+// Add asterisk to parent selections.
+// @TODO move to JS
+.questionDetailParentSelection::before {
+  color: $color-brand-orange;
+  content: "*";
+  left: -2px;
+  line-height: 1;
+  font-size: 2rem;
+  font-weight: $txt-font-weight-default-bold;
+  position: absolute;
+  top: 2px;
+}
+
+.hgalert-message a {
+  text-decoration: underline;
+  color: inherit !important;
+}
+
+// Page break divs that we style in media block below.
+.page-break {
+  display: none;
+}
+
+// Content that we enable media block below.
+.only-print {
+  display: none;
+}
+
+// Print styles.
+@media print {
+  html,
+  body,
+  #root {
+    min-height: unset;
+  }
+  body {
+    background-color: #ffffff;
+  }
+  .app {
+    min-height: unset;
+  }
+  .app-body {
+    min-height: unset;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .no-print {
+    display: none;
+  }
+  .only-print {
+    display: block;
+  }
+
+  // Be sure to display:none this for other media.
+  // Usage: <div class="page-break"></div>
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+
+  .print-without-page-break-inside {
+    break-inside: avoid !important;
+    display: block !important;
+    margin: 1em 0;
+    position: relative;
+  }
+  .print-without-grid-container-layout {
+    display: block !important;
+    flex: none;
+    margin: 1em 0;
+    position: relative;
+    width: 100%;
+  }
+  .print-without-grid-item-layout {
+    display: block !important;
+    flex: none;
+    margin: 1em 0;
+    position: relative;
+    width: 100%;
+  }
+  .print-no-flex-container {
+    display: block !important;
+    flex: none !important;
+  }
+  .print-no-flex-item {
+    display: inline-block !important;
+    width: 29% !important;
+    vertical-align: top;
+  }
+  .print-page-title {
+    text-align: center;
+    font-size: 5rem;
+  }
+  .print-without-link-color {
+    color: $txt-color-default !important;
+  }
+  .print-with-columns-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+body::backdrop {
+  background-color: $color-off-white;
+}
+
+// Custom animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

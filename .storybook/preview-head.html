@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- STYLEGUIDE NOTE:
+  This file is only used in the iframe that wraps the story previews in
+  our styleguide. It's not used by other pieces of the Storybook UI.
+
+  Keep relevant tags here synced with `public/index.html`
+  as needed.
+-->
+
+<!-- Detect IE, update HTML tag class. -->
+<script>
+function isIE() {
+  var ua = window.navigator.userAgent;
+  if (ua.indexOf('MSIE ') > 0)    { return 'ie_lte_10'; } // IE 10 or older
+  if (ua.indexOf('Trident/') > 0) { return 'ie_11'; }     // IE 11
+  return false; // Not IE.
+}
+var _ie = isIE();
+if (_ie) { document.documentElement.className = document.documentElement.className + " " + _ie; }
+</script>
+
+<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7954056/7936412/css/fonts.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+/* Override background set by MUI theme so we can see Storybook's grid.
+    @see .storybook/config.js */
+body.sb-show-main {
+  background-color: transparent;
+  padding: 20px;
+}
+</style>

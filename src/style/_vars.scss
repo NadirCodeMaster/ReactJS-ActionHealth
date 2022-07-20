@@ -1,0 +1,608 @@
+/**
+ * System-wide style variables.
+ *
+ * These are imported into our sass files, MUI theme configs and
+ * can also be imported into other JS files. Example use in JS:
+ *
+ * ```
+ * import styleVars from './style/_vars.scss';
+ * console.log(styleVars.colorPrimary);
+ * ```
+ *
+ * Values must be named using typical scss conventions (i.e.,
+ * `$test-color: #FFFFFF`), then be exported at the end
+ * of the file using camelCase to make them accessible as
+ * object properties in JS.
+ *
+ * UNITS:
+ * ======
+ * - Font size: **You must use rems here** unless otherwise noted in adjacent
+ *   comments (external code expects it). The <html> tag is styled to treat 1rem
+ *   as 10px. So, to achieve 15px, you'd just say 1.5rem.
+ *
+ * - Other stuff: In most cases, use pixels. There are occassions when
+ *   em is more appropriate, but for the most part, px are the way to go.
+ *
+ *   Related: **Use a value derived from the spacing unit** for things like
+ *   margin, padding, width when setting a specific value is required.
+ *   For sizes larger than 1 spacing unit, multiply it by any whole number
+ *   or a fractional unit (with or without a whole number) based on eighths.
+ *   Examples: 1.5, 5.125, 0.75.
+ *
+ * FONT SIZES:
+ * ===========
+ * Aside from the notes in "Units" above, below are some important notes
+ * about how font size variations are defined here:
+ *
+ * - Every font-size variable here starts with `$txt-font-size`
+ * - There are four variations of each font size, as listed below. The `{usage}`
+ *   string will be something like `h1`, `xl`, `buttons` or `buttons-small`.
+ *   We use mobile-first sizing, so the name that ends with the usage is both
+ *   the default and the one used at the `xs` breakpoint. The other three
+ *   are applicable to their respective breakpoints (ex: `-bp-md` indicates
+ *   the size is only for use at the `md` breakpoint. We don't declare anything
+ *   for `xl` (`lg` is to be used at that size).
+ *   - $txt-font-size-{usage}
+ *   - $txt-font-size-{usage}-bp-sm
+ *   - $txt-font-size-{usage}-bp-md
+ *   - $txt-font-size-{usage}-bp-lg
+ * - External code is coupled with this strategy, such as the `responsiveFontSize()`
+ *   utility that relies on the naming convention to work correctly.
+ */
+
+// ===============================
+// Colors (prefixed with `color-`)
+// ===============================
+// -- Color-colors.
+$color-orange: #fb4f14;
+$color-light-orange: #e97345;
+$color-dark-orange: #dc4612;
+$color-gray: #a3a3a3;
+$color-light-gray: #ece8e8;
+$color-dark-gray: #757575;
+$color-green: #91be48;
+$color-blue: #2abbd5;
+$color-black: #121212;
+$color-white: #ffffff;
+$color-off-white: #fafafa;
+// -- Theme / branding colors.
+$color-brand-orange: $color-orange; // official HG brand orange.
+$color-primary: $color-dark-orange;
+$color-primary-extra-contrast: #cc4011; // even more contrast to use where a11y might be an issue.
+$color-secondary: $color-gray;
+$color-secondary-extra-contrast: $color-dark-gray;
+// -- Status colors.
+$color-status-danger: #e33f32;
+$color-status-danger-contrast: #fff;
+$color-status-danger-border: #d03327;
+$color-status-error: #e33f32;
+$color-status-error-contrast: #fff;
+$color-status-error-border: #d03327;
+$color-status-info: #009ec9;
+$color-status-info-contrast: #fff;
+$color-status-info-border: #0695bb;
+$color-status-success: #6aa421;
+$color-status-success-contrast: #fff;
+$color-status-success-border: #5d9418;
+$color-status-warning: #ffe6af;
+$color-status-warning-contrast: #333;
+$color-status-warning-border: #f4d89a;
+
+// =================
+// Misc size related
+// =================
+$spacing-unit-unit: unquote("px");
+$spacing-unit-unitless-value: 8;
+$spacing-unit: #{$spacing-unit-unitless-value}#{$spacing-unit-unit};
+
+// ====
+// Grid
+// ====
+// NOTE! This value must be re-cast as number when using in the <Grid> spacing attribute,
+// otherwise it doesn't work. Ex: <Grid container spacing={Number(styleVars.gridSpacing)}>
+// @see https://mui.com/components/grid/
+$grid-spacing: 5; // must be value between 0 and 10.
+
+// =============
+// Paper padding
+// =============
+// Standard padding for Paper when applying padding to Paper.
+// (most of our instances of Paper will use padding, so use
+//  this value when styling those instances to ensure consistency)
+$paper-padding-unit: unquote("px");
+$paper-padding-unitless-value: #{$spacing-unit-unitless-value * 3};
+$paper-padding: #{$paper-padding-unitless-value}#{$paper-padding-unit};
+
+// =====
+// Cards
+// =====
+$card-padding-unit: unquote("px");
+$card-padding-unitless-value: #{$spacing-unit-unitless-value * 3};
+$card-padding: #{$card-padding-unitless-value}#{$card-padding-unit};
+
+// =================================
+// Breakpoints (prefixed with `bp-`)
+// =================================
+// Each value represents the _minimum_ width accommodated
+// by the corresponding breakpoint name value.
+$bp-xs: 0px;
+$bp-sm: 600px;
+$bp-md: 900px;
+$bp-lg: 1200px;
+$bp-xl: 1536px;
+
+// ===================================
+// Text-related (prefixed with `txt-`)
+// ===================================
+// -- Colors.
+$txt-color-default: #2b2a2a; // was #6E6C6A but contrast too low for a11y
+$txt-color-h1: $txt-color-default;
+$txt-color-h2: $txt-color-default;
+$txt-color-h3: $txt-color-default;
+$txt-color-h4: $txt-color-default;
+$txt-color-h5: $txt-color-default;
+$txt-color-h6: $txt-color-default;
+$txt-color-light: #6e6c6a;
+$txt-color-link: $color-primary-extra-contrast; // was #fb4f14, but contrast too low for a11y
+$txt-color-muted-link: #999999;
+$txt-color-muted-link-hover: #e13400;
+$txt-color-muted-link-active: #c93100;
+
+// -- Sizes.
+// Default text sizes.
+$txt-font-size-default: 1.4rem;
+$txt-font-size-default-bp-sm: 1.4rem;
+$txt-font-size-default-bp-md: 1.4rem;
+$txt-font-size-default-bp-lg: 1.4rem;
+// ---- non-semantic variations based on relative size:
+$txt-font-size-xxs: 1.1rem;
+$txt-font-size-xxs-bp-sm: 1.1rem;
+$txt-font-size-xxs-bp-md: 1.1rem;
+$txt-font-size-xxs-bp-lg: 1.1rem;
+$txt-font-size-xs: 1.2rem;
+$txt-font-size-xs-bp-sm: 1.2rem;
+$txt-font-size-xs-bp-md: 1.2rem;
+$txt-font-size-xs-bp-lg: 1.2rem;
+$txt-font-size-sm: 1.3rem;
+$txt-font-size-sm-bp-sm: 1.3rem;
+$txt-font-size-sm-bp-md: 1.3rem;
+$txt-font-size-sm-bp-lg: 1.3rem;
+// (No "md" here because that would be equal to
+//  unsized. Use $txt-font-size-default instead.)
+$txt-font-size-lg: 1.6rem;
+$txt-font-size-lg-bp-sm: 1.6rem;
+$txt-font-size-lg-bp-md: 1.6rem;
+$txt-font-size-lg-bp-lg: 1.6rem;
+$txt-font-size-xl: 1.8rem;
+$txt-font-size-xl-bp-sm: 1.8rem;
+$txt-font-size-xl-bp-md: 1.8rem;
+$txt-font-size-xl-bp-lg: 1.8rem;
+$txt-font-size-xxl: 2rem;
+$txt-font-size-xxl-bp-sm: 2rem;
+$txt-font-size-xxl-bp-md: 2rem;
+$txt-font-size-xxl-bp-lg: 2rem;
+
+// ---- semantic values:
+// buttons (normal)
+$txt-font-size-buttons: 1.2rem;
+$txt-font-size-buttons-bp-sm: 1.2rem;
+$txt-font-size-buttons-bp-md: 1.2rem;
+$txt-font-size-buttons-bp-lg: 1.2rem;
+// buttons (w/size=small and equivalent)
+$txt-font-size-buttons-small: 0.875rem;
+$txt-font-size-buttons-small-bp-sm: 0.875rem;
+$txt-font-size-buttons-small-bp-md: 0.875rem;
+$txt-font-size-buttons-small-bp-lg: 0.875rem;
+// inputs, textareas etc
+$txt-font-size-inputs: 1.3rem;
+$txt-font-size-inputs-bp-sm: 1.3rem;
+$txt-font-size-inputs-bp-md: 1.3rem;
+$txt-font-size-inputs-bp-lg: 1.3rem;
+// headers
+$txt-font-size-h1: 2.4rem;
+$txt-font-size-h1-bp-sm: 2.4rem;
+$txt-font-size-h1-bp-md: 3.2rem;
+$txt-font-size-h1-bp-lg: 3.2rem;
+$txt-font-size-h2: 1.8rem;
+$txt-font-size-h2-bp-sm: 1.8rem;
+$txt-font-size-h2-bp-md: 2.4rem;
+$txt-font-size-h2-bp-lg: 2.4rem;
+$txt-font-size-h3: 1.6rem;
+$txt-font-size-h3-bp-sm: 1.6rem;
+$txt-font-size-h3-bp-md: 1.6rem;
+$txt-font-size-h3-bp-lg: 1.6rem;
+$txt-font-size-h4: 1.4rem;
+$txt-font-size-h4-bp-sm: 1.4rem;
+$txt-font-size-h4-bp-md: 1.4rem;
+$txt-font-size-h4-bp-lg: 1.4rem;
+$txt-font-size-h5: 1.3rem;
+$txt-font-size-h5-bp-sm: 1.3rem;
+$txt-font-size-h5-bp-md: 1.3rem;
+$txt-font-size-h5-bp-lg: 1.3rem;
+$txt-font-size-h6: 1.1rem;
+$txt-font-size-h6-bp-sm: 1.1rem;
+$txt-font-size-h6-bp-md: 1.3rem;
+$txt-font-size-h6-bp-lg: 1.3rem;
+$txt-font-size-table-body: 1.3rem;
+$txt-font-size-table-body-bp-sm: 1.3rem;
+$txt-font-size-table-body-bp-md: 1.3rem;
+$txt-font-size-table-body-bp-lg: 1.3rem;
+$txt-font-size-table-head: 1.1rem;
+$txt-font-size-table-head-bp-sm: 1.1rem;
+$txt-font-size-table-head-bp-md: 1.1rem;
+$txt-font-size-table-head-bp-lg: 1.1rem;
+
+// -- Line heights.
+$txt-line-height-buttons: 1.75; // MUI default: 1.75
+$txt-line-height-inputs: 1.4;
+$txt-line-height-headers: 1.4; // generic/default headers
+$txt-line-height-h1: $txt-line-height-headers;
+$txt-line-height-h2: $txt-line-height-headers;
+$txt-line-height-h3: $txt-line-height-headers;
+$txt-line-height-h4: $txt-line-height-headers;
+$txt-line-height-h5: $txt-line-height-headers;
+$txt-line-height-h6: $txt-line-height-headers;
+$txt-line-height-table-body: 1.4;
+$txt-line-height-table-head: 1.4;
+// -- Letter spacing.
+$txt-letter-spacing-buttons: 0.025em;
+$txt-letter-spacing-inputs: normal;
+$txt-letter-spacing-headers: -0.025em; // generic/default headers
+$txt-letter-spacing-h1: $txt-letter-spacing-headers;
+$txt-letter-spacing-h2: $txt-letter-spacing-headers;
+$txt-letter-spacing-h3: $txt-letter-spacing-headers;
+$txt-letter-spacing-h4: $txt-letter-spacing-headers;
+$txt-letter-spacing-h5: $txt-letter-spacing-headers;
+$txt-letter-spacing-h6: $txt-letter-spacing-headers;
+$txt-letter-spacing-table-body: normal;
+$txt-letter-spacing-table-head: normal;
+// -- Transforms.
+$txt-text-transform-h1: none;
+$txt-text-transform-h2: none;
+$txt-text-transform-h3: none;
+$txt-text-transform-h4: none;
+$txt-text-transform-h5: none;
+$txt-text-transform-h6: none;
+// -- Variants.
+$txt-font-variant-h1: normal;
+$txt-font-variant-h2: normal;
+$txt-font-variant-h3: normal;
+$txt-font-variant-h4: normal;
+$txt-font-variant-h5: normal;
+$txt-font-variant-h6: all-small-caps;
+// -- Margins.
+// Values represent the bottom margin only so we can
+// use the value similarly from other places. Few
+// semantic HTML text selectors will have non-bottom
+// margin declared in this system.
+$txt-margin-bottom-p: 0.875em;
+$txt-margin-bottom-h1: 0.25em;
+$txt-margin-bottom-h2: 0.5em;
+$txt-margin-bottom-h3: 0.25em;
+$txt-margin-bottom-h4: 0.875em;
+$txt-margin-bottom-h5: 0.5em;
+$txt-margin-bottom-h6: 0;
+
+// ========================
+// Font stacks and weights.
+// ========================
+// Declaring weights adjacent to the stacks because different families
+// may use different weight values for a given keyword.
+
+// -- Ideal Sans.
+// This is an externally-hosted font and the weights in use must be
+// configured at the service hosting the font. (don't change them
+// without ensuring they are enabled for use)
+$txt-font-stack-ideal-sans: "Ideal Sans SSm A", "Ideal Sans SSm B", "system-ui", "-apple-system",
+  "BlinkMacSystemFont", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+  "Helvetica Neue", "sans-serif";
+$txt-font-weight-extra-light-ideal-sans: 200;
+$txt-font-weight-light-ideal-sans: 200;
+$txt-font-weight-normal-ideal-sans: 300;
+$txt-font-weight-medium-ideal-sans: 500;
+$txt-font-weight-semibold-ideal-sans: 600;
+$txt-font-weight-bold-ideal-sans: 700;
+
+// -- Generic.
+// Stack for a generic sans that the user's OS will be happy with
+// and probably not have problematic leading.
+$txt-font-stack-generic-sans: "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif";
+$txt-font-weight-extra-light-generic-sans: 200;
+$txt-font-weight-light-generic-sans: 300;
+$txt-font-weight-normal-generic-sans: 400;
+$txt-font-weight-medium-generic-sans: 500;
+$txt-font-weight-semibold-generic-sans: 600;
+$txt-font-weight-bold-generic-sans: 700;
+
+// ========================================
+// Font-related definitions based on usage.
+// ========================================
+// -- Default/primary.
+$txt-font-family-default: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-default-extra-light: #{$txt-font-weight-extra-light-ideal-sans};
+$txt-font-weight-default-light: #{$txt-font-weight-light-ideal-sans};
+$txt-font-weight-default-normal: #{$txt-font-weight-normal-ideal-sans};
+$txt-font-weight-default-medium: #{$txt-font-weight-medium-ideal-sans};
+$txt-font-weight-default-semibold: #{$txt-font-weight-semibold-ideal-sans};
+$txt-font-weight-default-bold: #{$txt-font-weight-bold-ideal-sans};
+
+// -- Inputs
+// Use generic/system fonts to avoid issues with leading from fancy fonts.
+$txt-font-family-inputs: #{$txt-font-stack-generic-sans};
+$txt-font-weight-inputs: #{$txt-font-weight-normal-generic-sans};
+
+// -- Buttons
+$txt-font-family-buttons: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-buttons: #{$txt-font-weight-semibold-ideal-sans};
+
+// -- Headers (generic headerish elements)
+$txt-font-family-headers: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-headers: #{$txt-font-weight-medium-ideal-sans};
+// ---- H1
+$txt-font-family-h1: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-h1: #{$txt-font-weight-extra-light-ideal-sans};
+// ---- H2
+$txt-font-family-h2: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-h2: #{$txt-font-weight-light-ideal-sans};
+// ---- H3
+$txt-font-family-h3: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-h3: #{$txt-font-weight-medium-ideal-sans};
+// ---- H4
+$txt-font-family-h4: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-h4: #{$txt-font-weight-medium-ideal-sans};
+// ---- H5
+$txt-font-family-h5: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-h5: #{$txt-font-weight-medium-ideal-sans};
+// ---- H6
+$txt-font-family-h6: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-h6: #{$txt-font-weight-normal-ideal-sans};
+
+// -- Tables.
+$txt-font-family-table-body: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-table-body: #{$txt-font-weight-normal-ideal-sans};
+$txt-font-family-table-head: #{$txt-font-stack-ideal-sans};
+$txt-font-weight-table-head: #{$txt-font-weight-normal-ideal-sans};
+
+// ====================================
+// Table-related (prefixed with `tbl-`)
+// ====================================
+// (many values are covered under `txt-` above)
+$tbl-body-cell-padding: #{$spacing-unit-unitless-value * 2}#{$spacing-unit-unit};
+$tbl-head-cell-padding: #{$spacing-unit-unitless-value * 2}#{$spacing-unit-unit} #{$spacing-unit-unitless-value *
+  2}#{$spacing-unit-unit} $spacing-unit #{$spacing-unit-unitless-value * 2}#{$spacing-unit-unit};
+
+// =====
+// Other
+// =====
+// Other values that are useful to have as variables.
+$site-breadcrumb-color: #707070;
+$site-breadcrumb-color-link: $site-breadcrumb-color; // ensure sufficient contrast w/gray bg
+$site-breadcrumb-color-link-hover: $color-secondary;
+$site-breadcrumb-color-link-active: $color-secondary;
+$site-sidebar-menu-width: 180px;
+$site-main-max-width: 950px;
+$site-min-width: 320px;
+
+// ===============================
+// Export values to be used in JS.
+// ===============================
+:export {
+  // ************************************************************************
+  // Note that numeric values exported from here will be read in JavaScript
+  // as strings. So, you may need to cast them to actual numbers with something
+  // like style/utils/unitlessNumber(), which will also remove unit strings such
+  // as 'px'.
+  //
+  // KEEP SORTED ALPHABETICALLY.
+  // ************************************************************************
+
+  bpLg: $bp-lg;
+  bpMd: $bp-md;
+  bpSm: $bp-sm;
+  bpXl: $bp-xl;
+  bpXs: $bp-xs;
+  cardPadding: $card-padding;
+  cardPaddingUnit: $card-padding-unit;
+  cardPaddingUnitlessValue: $card-padding-unitless-value;
+  colorBlack: $color-black;
+  colorBlue: $color-blue;
+  colorBrandOrange: $color-brand-orange;
+  colorDarkGray: $color-dark-gray;
+  colorDarkOrange: $color-dark-orange;
+  colorGray: $color-gray;
+  colorGreen: $color-green;
+  colorLightGray: $color-light-gray;
+  colorLightOrange: $color-light-orange;
+  colorOffWhite: $color-off-white;
+  colorOrange: $color-orange;
+  colorPrimary: $color-primary;
+  colorPrimaryExtraContrast: $color-primary-extra-contrast;
+  colorSecondary: $color-secondary;
+  colorSecondaryExtraContrast: $color-secondary-extra-contrast;
+  colorStatusDanger: $color-status-danger;
+  colorStatusDangerBorder: $color-status-danger-border;
+  colorStatusDangerContrast: $color-status-danger-contrast;
+  colorStatusError: $color-status-error;
+  colorStatusErrorBorder: $color-status-error-border;
+  colorStatusErrorContrast: $color-status-error-contrast;
+  colorStatusInfo: $color-status-info;
+  colorStatusInfoBorder: $color-status-info-border;
+  colorStatusInfoContrast: $color-status-info-contrast;
+  colorStatusSuccess: $color-status-success;
+  colorStatusSuccessBorder: $color-status-success-border;
+  colorStatusSuccessContrast: $color-status-success-contrast;
+  colorStatusWarning: $color-status-warning;
+  colorStatusWarningBorder: $color-status-warning-border;
+  colorStatusWarningContrast: $color-status-warning-contrast;
+  colorWhite: $color-white;
+  gridSpacing: $grid-spacing;
+  paperPadding: $card-padding;
+  paperPaddingUnit: $paper-padding-unit;
+  paperPaddingUnitlessValue: $paper-padding-unitless-value;
+  siteBreadcrumbColor: $site-breadcrumb-color;
+  siteBreadcrumbColorLink: $site-breadcrumb-color-link;
+  siteBreadcrumbColorLinkActive: $site-breadcrumb-color-link-active;
+  siteBreadcrumbColorLinkHover: $site-breadcrumb-color-link-hover;
+  siteMainMaxWidth: $site-main-max-width;
+  siteMinWidth: $site-min-width;
+  siteSidebarMenuWidth: $site-sidebar-menu-width;
+  spacingUnit: $spacing-unit;
+  spacingUnitUnit: $spacing-unit-unit;
+  spacingUnitUnitlessValue: $spacing-unit-unitless-value;
+  tblBodyCellPadding: $tbl-body-cell-padding;
+  tblHeadCellPadding: $tbl-head-cell-padding;
+  txtColorDefault: $txt-color-default;
+  txtColorH1: $txt-color-h1;
+  txtColorH2: $txt-color-h2;
+  txtColorH3: $txt-color-h3;
+  txtColorH4: $txt-color-h4;
+  txtColorH5: $txt-color-h5;
+  txtColorH6: $txt-color-h6;
+  txtColorLight: $txt-color-light;
+  txtColorLink: $txt-color-link;
+  txtColorMutedLink: $txt-color-muted-link;
+  txtColorMutedLinkActive: $txt-color-muted-link-active;
+  txtColorMutedLinkHover: $txt-color-muted-link-hover;
+  txtFontFamilyButtons: $txt-font-family-buttons;
+  txtFontFamilyDefault: $txt-font-family-default;
+  txtFontFamilyH1: $txt-font-family-h1;
+  txtFontFamilyH2: $txt-font-family-h2;
+  txtFontFamilyH3: $txt-font-family-h3;
+  txtFontFamilyH4: $txt-font-family-h4;
+  txtFontFamilyH6: $txt-font-family-h6;
+  txtFontFamilyHeaders: $txt-font-family-headers;
+  txtFontFamilyInputs: $txt-font-family-inputs;
+  txtFontFamilyTableBody: $txt-font-family-table-body;
+  txtFontFamilyTableHead: $txt-font-family-table-head;
+  txtFontSizeButtons: $txt-font-size-buttons;
+  txtFontSizeButtonsBpLg: $txt-font-size-buttons-bp-lg;
+  txtFontSizeButtonsBpMd: $txt-font-size-buttons-bp-md;
+  txtFontSizeButtonsBpSm: $txt-font-size-buttons-bp-sm;
+  txtFontSizeButtonsSmall: $txt-font-size-buttons-small;
+  txtFontSizeButtonsSmallBpLg: $txt-font-size-buttons-small-bp-lg;
+  txtFontSizeButtonsSmallBpMd: $txt-font-size-buttons-small-bp-md;
+  txtFontSizeButtonsSmallBpSm: $txt-font-size-buttons-small-bp-sm;
+  txtFontSizeDefault: $txt-font-size-default;
+  txtFontSizeDefaultBpLg: $txt-font-size-default-bp-lg;
+  txtFontSizeDefaultBpMd: $txt-font-size-default-bp-md;
+  txtFontSizeDefaultBpSm: $txt-font-size-default-bp-sm;
+  txtFontSizeH1: $txt-font-size-h1;
+  txtFontSizeH1BpLg: $txt-font-size-h1-bp-lg;
+  txtFontSizeH1BpMd: $txt-font-size-h1-bp-md;
+  txtFontSizeH1BpSm: $txt-font-size-h1-bp-sm;
+  txtFontSizeH2: $txt-font-size-h2;
+  txtFontSizeH2BpLg: $txt-font-size-h2-bp-lg;
+  txtFontSizeH2BpMd: $txt-font-size-h2-bp-md;
+  txtFontSizeH2BpSm: $txt-font-size-h2-bp-sm;
+  txtFontSizeH3: $txt-font-size-h3;
+  txtFontSizeH3BpLg: $txt-font-size-h3-bp-lg;
+  txtFontSizeH3BpMd: $txt-font-size-h3-bp-md;
+  txtFontSizeH3BpSm: $txt-font-size-h3-bp-sm;
+  txtFontSizeH4: $txt-font-size-h4;
+  txtFontSizeH4BpLg: $txt-font-size-h4-bp-lg;
+  txtFontSizeH4BpMd: $txt-font-size-h4-bp-md;
+  txtFontSizeH4BpSm: $txt-font-size-h4-bp-sm;
+  txtFontSizeH5: $txt-font-size-h5;
+  txtFontSizeH5BpLg: $txt-font-size-h5-bp-lg;
+  txtFontSizeH5BpMd: $txt-font-size-h5-bp-md;
+  txtFontSizeH5BpSm: $txt-font-size-h5-bp-sm;
+  txtFontSizeH6: $txt-font-size-h6;
+  txtFontSizeH6BpLg: $txt-font-size-h6-bp-lg;
+  txtFontSizeH6BpMd: $txt-font-size-h6-bp-md;
+  txtFontSizeH6BpSm: $txt-font-size-h6-bp-sm;
+  txtFontSizeInputs: $txt-font-size-inputs;
+  txtFontSizeInputsBpLg: $txt-font-size-inputs-bp-lg;
+  txtFontSizeInputsBpMd: $txt-font-size-inputs-bp-md;
+  txtFontSizeInputsBpSm: $txt-font-size-inputs-bp-sm;
+  txtFontSizeLg: $txt-font-size-lg;
+  txtFontSizeLgBpLg: $txt-font-size-lg-bp-lg;
+  txtFontSizeLgBpMd: $txt-font-size-lg-bp-md;
+  txtFontSizeLgBpSm: $txt-font-size-lg-bp-sm;
+  txtFontSizeSm: $txt-font-size-sm;
+  txtFontSizeSmBpLg: $txt-font-size-sm-bp-lg;
+  txtFontSizeSmBpMd: $txt-font-size-sm-bp-md;
+  txtFontSizeSmBpSm: $txt-font-size-sm-bp-sm;
+  txtFontSizeTableBody: $txt-font-size-table-body;
+  txtFontSizeTableBodyBpLg: $txt-font-size-table-body-bp-lg;
+  txtFontSizeTableBodyBpMd: $txt-font-size-table-body-bp-md;
+  txtFontSizeTableBodyBpSm: $txt-font-size-table-body-bp-sm;
+  txtFontSizeTableHead: $txt-font-size-table-head;
+  txtFontSizeTableHeadBpLg: $txt-font-size-table-head-bp-lg;
+  txtFontSizeTableHeadBpMd: $txt-font-size-table-head-bp-md;
+  txtFontSizeTableHeadBpSm: $txt-font-size-table-head-bp-sm;
+  txtFontSizeXl: $txt-font-size-xl;
+  txtFontSizeXlBpLg: $txt-font-size-xl-bp-lg;
+  txtFontSizeXlBpMd: $txt-font-size-xl-bp-md;
+  txtFontSizeXlBpSm: $txt-font-size-xl-bp-sm;
+  txtFontSizeXs: $txt-font-size-xs;
+  txtFontSizeXsBpLg: $txt-font-size-xs-bp-lg;
+  txtFontSizeXsBpMd: $txt-font-size-xs-bp-md;
+  txtFontSizeXsBpSm: $txt-font-size-xs-bp-sm;
+  txtFontSizeXxl: $txt-font-size-xxl;
+  txtFontSizeXxlBpLg: $txt-font-size-xxl-bp-lg;
+  txtFontSizeXxlBpMd: $txt-font-size-xxl-bp-md;
+  txtFontSizeXxlBpSm: $txt-font-size-xxl-bp-sm;
+  txtFontSizeXxs: $txt-font-size-xxs;
+  txtFontSizeXxsBpLg: $txt-font-size-xxs-bp-lg;
+  txtFontSizeXxsBpMd: $txt-font-size-xxs-bp-md;
+  txtFontSizeXxsBpSm: $txt-font-size-xxs-bp-sm;
+  txtFontVariantH1: $txt-font-variant-h1;
+  txtFontVariantH2: $txt-font-variant-h2;
+  txtFontVariantH3: $txt-font-variant-h3;
+  txtFontVariantH4: $txt-font-variant-h4;
+  txtFontVariantH5: $txt-font-variant-h5;
+  txtFontVariantH6: $txt-font-variant-h6;
+  txtFontWeightButtons: $txt-font-weight-buttons;
+  txtFontWeightDefaultBold: $txt-font-weight-default-bold;
+  txtFontWeightDefaultExtraLight: $txt-font-weight-default-extra-light;
+  txtFontWeightDefaultLight: $txt-font-weight-default-light;
+  txtFontWeightDefaultMedium: $txt-font-weight-default-medium;
+  txtFontWeightDefaultNormal: $txt-font-weight-default-normal;
+  txtFontWeightDefaultSemibold: $txt-font-weight-default-semibold;
+  txtFontWeightH1: $txt-font-weight-h1;
+  txtFontWeightH2: $txt-font-weight-h2;
+  txtFontWeightH3: $txt-font-weight-h3;
+  txtFontWeightH4: $txt-font-weight-h4;
+  txtFontWeightH5: $txt-font-weight-h5;
+  txtFontWeightH6: $txt-font-weight-h6;
+  txtFontWeightHeaders: $txt-font-weight-headers;
+  txtFontWeightInputs: $txt-font-weight-inputs;
+  txtFontWeightTableBody: $txt-font-weight-table-body;
+  txtFontWeightTableHead: $txt-font-weight-table-head;
+  txtLetterSpacingButtons: $txt-letter-spacing-buttons;
+  txtLetterSpacingH1: $txt-letter-spacing-h1;
+  txtLetterSpacingH2: $txt-letter-spacing-h2;
+  txtLetterSpacingH3: $txt-letter-spacing-h3;
+  txtLetterSpacingH4: $txt-letter-spacing-h4;
+  txtLetterSpacingH5: $txt-letter-spacing-h5;
+  txtLetterSpacingH6: $txt-letter-spacing-h6;
+  txtLetterSpacingHeaders: $txt-letter-spacing-headers;
+  txtLetterSpacingInputs: $txt-letter-spacing-inputs;
+  txtLetterSpacingTableBody: $txt-letter-spacing-table-body;
+  txtLetterSpacingTableHead: $txt-letter-spacing-table-head;
+  txtLineHeightButtons: $txt-line-height-buttons;
+  txtLineHeightH1: $txt-line-height-h1;
+  txtLineHeightH2: $txt-line-height-h2;
+  txtLineHeightH3: $txt-line-height-h3;
+  txtLineHeightH4: $txt-line-height-h4;
+  txtLineHeightH5: $txt-line-height-h5;
+  txtLineHeightH6: $txt-line-height-h6;
+  txtLineHeightHeaders: $txt-line-height-headers;
+  txtLineHeightInputs: $txt-line-height-inputs;
+  txtLineHeightTableBody: $txt-line-height-table-body;
+  txtLineHeightTableHead: $txt-line-height-table-head;
+  txtMarginBottomH1: $txt-margin-bottom-h1;
+  txtMarginBottomH2: $txt-margin-bottom-h2;
+  txtMarginBottomH3: $txt-margin-bottom-h3;
+  txtMarginBottomH4: $txt-margin-bottom-h4;
+  txtMarginBottomH5: $txt-margin-bottom-h5;
+  txtMarginBottomH6: $txt-margin-bottom-h6;
+  txtMarginBottomP: $txt-margin-bottom-p;
+  txtTextTransformH1: $txt-text-transform-h1;
+  txtTextTransformH2: $txt-text-transform-h2;
+  txtTextTransformH3: $txt-text-transform-h3;
+  txtTextTransformH4: $txt-text-transform-h4;
+  txtTextTransformH5: $txt-text-transform-h5;
+  txtTextTransformH6: $txt-text-transform-h6;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+    <!-- Detect IE, update HTML tag class. -->
+    <script>
+    function isIE() {
+      var ua = window.navigator.userAgent;
+      if (ua.indexOf('MSIE ') > 0)    { return 'ie_lte_10'; } // IE 10 or older
+      if (ua.indexOf('Trident/') > 0) { return 'ie_11'; }     // IE 11
+      return false; // Not IE.
+    }
+    var _ie = isIE();
+    if (_ie) { document.documentElement.className = document.documentElement.className + " " + _ie; }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7954056/7936412/css/fonts.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>Action Center | Alliance for a Healthier Generation</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

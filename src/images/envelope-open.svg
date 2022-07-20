@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="41px" viewBox="0 0 40 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>icons8-open_envelope</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.06 0 40 0 40 40.94 0.06 40.94"></polygon>
+    </defs>
+    <g id="icons8-open_envelope" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-5">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M36,41 L4,41 C1.789,41 0,39.211 0,37 L0,16.082 C0,14.777 0.637,13.555 1.707,12.809 L20,0 L38.293,12.809 C39.363,13.555 40,14.777 40,16.082 L40,37 C40,39.211 38.211,41 36,41" id="Fill-1" fill="#78909C" mask="url(#mask-2)"></path>
+            <polygon id="Fill-3" fill="#FFFFFF" mask="url(#mask-2)" points="8 33 32 33 32 11 8 11"></polygon>
+            <path d="M36,41 L4,41 C1.789,41 0,39.211 0,37 L0,17 L20,30 L40,17 L40,37 C40,39.211 38.211,41 36,41" id="Fill-4" fill="#CFD8DC" mask="url(#mask-2)"></path>
+        </g>
+        <polygon id="Fill-6" fill="#2196F3" points="11 18 29 18 29 16 11 16"></polygon>
+        <polygon id="Fill-7" fill="#2196F3" points="11 22 23 22 23 20 11 20"></polygon>
+    </g>
+</svg>
